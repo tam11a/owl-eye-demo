@@ -1,6 +1,6 @@
 import { createClient } from "@/utils/supabase/server";
 import { cookies } from "next/headers";
-import { LoginForm } from "./_components/login";
+import { LoginForm } from "./_components/login/login.form";
 
 export default async function Login() {
 	const cookieStore = cookies();
