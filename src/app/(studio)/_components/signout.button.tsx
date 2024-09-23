@@ -1,10 +1,11 @@
 "use client";
-import { createClient } from "@/utils/supabase/client";
 import { Button } from "antd";
-import { redirect } from "next/navigation";
+import { createClient } from "@/utils/supabase/client";
+import { useRouter } from "next/navigation";
 
 export default function SignOutButton() {
 	const supabase = createClient();
+	const router = useRouter();
 
 	return (
 		<Button
@@ -12,7 +13,7 @@ export default function SignOutButton() {
 			color="danger"
 			onClick={async () => {
 				await supabase.auth.signOut();
-				redirect("/login");
+				router.replace("/login");
 			}}
 		>
 			Sign Out

@@ -1,9 +1,18 @@
 "use client";
 
+// Styled Components
 import { Button, Card, Form, Input } from "antd";
-import schema, { FormValues } from "./login.schema";
+const { Item, ErrorList } = Form;
+const { Password } = Input;
+
+// Hooks
 import { Controller, useForm } from "react-hook-form";
+
+// Resolvers
+import schema, { FormValues } from "./login.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+
+// Actions
 import { login } from "./login.action";
 
 export function LoginForm() {
@@ -34,7 +43,7 @@ export function LoginForm() {
 						field: { onChange, onBlur, value },
 						fieldState: { error },
 					}) => (
-						<Form.Item<FormValues>
+						<Item<FormValues>
 							label="Email"
 							name="email"
 						>
@@ -46,12 +55,12 @@ export function LoginForm() {
 								value={value}
 								status={error ? "error" : ""}
 							/>
-							<Form.ErrorList
+							<ErrorList
 								className="text-red-500"
 								fieldId="email"
 								errors={[error?.message]}
 							/>
-						</Form.Item>
+						</Item>
 					)}
 				/>
 				<Controller
@@ -61,12 +70,12 @@ export function LoginForm() {
 						field: { onChange, onBlur, value },
 						fieldState: { error },
 					}) => (
-						<Form.Item<FormValues>
+						<Item<FormValues>
 							label="Password"
 							name="password"
 							tooltip="Password must be at least 6 characters."
 						>
-							<Input.Password
+							<Password
 								placeholder="******"
 								size="large"
 								onChange={onChange}
@@ -74,12 +83,12 @@ export function LoginForm() {
 								value={value}
 								status={error ? "error" : ""}
 							/>
-							<Form.ErrorList
+							<ErrorList
 								className="text-red-500"
 								fieldId="password"
 								errors={[error?.message]}
 							/>
-						</Form.Item>
+						</Item>
 					)}
 				/>
 				<Button
