@@ -9,4 +9,6 @@ const schema = z.object({
 	}),
 });
 
+export type FormValues = z.infer<typeof schema>;
+
 export default schema;
