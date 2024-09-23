@@ -1,5 +1,6 @@
 import { createClient } from "@/utils/supabase/server";
 import { cookies } from "next/headers";
+import { LoginForm } from "./_components/login";
 
 export default async function Login() {
 	const cookieStore = cookies();
@@ -11,7 +12,9 @@ export default async function Login() {
 	return (
 		<>
 			<main className="w-svw h-svh flex flex-col items-center justify-center">
-				<section className="max-w-sm w-full"></section>
+				<section className="max-w-sm w-full">
+					<LoginForm />
+				</section>
 			</main>
 		</>
 	);
