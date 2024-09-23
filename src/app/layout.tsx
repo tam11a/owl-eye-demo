@@ -12,8 +12,8 @@ const fontSans = Outfit({
 });
 
 export const metadata: Metadata = {
-	title: "Owl Eye",
-	description: "360 degree view of your business",
+	title: "Studio | Owl Eye",
+	description: "360 Tour Editing Software",
 };
 
 export default function RootLayout({

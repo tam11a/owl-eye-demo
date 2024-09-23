@@ -4,9 +4,10 @@ import { Button, Card, Form, Input } from "antd";
 import schema, { FormValues } from "./login.schema";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { login } from "./login.action";
 
 export function LoginForm() {
-	const { reset, handleSubmit, control } = useForm<FormValues>({
+	const { handleSubmit, control } = useForm<FormValues>({
 		resolver: zodResolver(schema),
 		defaultValues: {
 			email: "",
@@ -15,9 +16,7 @@ export function LoginForm() {
 	});
 
 	async function onSubmit(values: FormValues) {
-		// Call the login API
-		console.log(values);
-		reset();
+		await login(values);
 	}
 
 	return (
@@ -31,55 +30,56 @@ export function LoginForm() {
 				<Controller
 					control={control}
 					name={"email"}
-					rules={{ required: true }}
 					render={({
 						field: { onChange, onBlur, value },
 						fieldState: { error },
 					}) => (
-						<>
-							<Form.Item<FormValues>
-								label="Email"
-								name="email"
-								style={{ marginBottom: "12px" }}
-								rules={[{ required: true }]}
-							>
-								<Input
-									placeholder="john.doe@example.com"
-									size="large"
-									onChange={onChange}
-									onBlur={onBlur}
-									value={value}
-									status={error ? "error" : ""}
-								/>
-							</Form.Item>
-						</>
+						<Form.Item<FormValues>
+							label="Email"
+							name="email"
+						>
+							<Input
+								placeholder="john.doe@example.com"
+								size="large"
+								onChange={onChange}
+								onBlur={onBlur}
+								value={value}
+								status={error ? "error" : ""}
+							/>
+							<Form.ErrorList
+								className="text-red-500"
+								fieldId="email"
+								errors={[error?.message]}
+							/>
+						</Form.Item>
 					)}
 				/>
 				<Controller
 					control={control}
 					name={"password"}
-					rules={{ required: true }}
 					render={({
 						field: { onChange, onBlur, value },
 						fieldState: { error },
 					}) => (
-						<>
-							<Form.Item<FormValues>
-								label="Password"
-								name="password"
-								style={{ marginBottom: "12px" }}
-								rules={[{ required: true }]}
-							>
-								<Input.Password
-									placeholder="******"
-									size="large"
-									onChange={onChange}
-									onBlur={onBlur}
-									value={value}
-									status={error ? "error" : ""}
-								/>
-							</Form.Item>
-						</>
+						<Form.Item<FormValues>
+							label="Password"
+							name="password"
+							tooltip="Password must be at least 6 characters."
+						>
+							<Input.Password
+								placeholder="******"
+								size="large"
+								onChange={onChange}
+								onBlur={onBlur}
+								value={value}
+								status={error ? "error" : ""}
+							/>
+							<Form.ErrorList
+								className="text-red-500"
+								fieldId="password"
+								errors={[error?.message]}
+							/>
+						</Form.Item>
 					)}
 				/>
 				<Button
