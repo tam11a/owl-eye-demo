@@ -1,0 +1,18 @@
+import { createClient } from "@/utils/supabase/server";
+import { cookies } from "next/headers";
+
+export default async function Login() {
+	const cookieStore = cookies();
+	const supabase = createClient(cookieStore);
+
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	const { data: todos } = await supabase.from("todos").select();
+
+	return (
+		<>
+			<main className="w-svw h-svh flex flex-col items-center justify-center">
+				<section className="max-w-sm w-full"></section>
+			</main>
+		</>
+	);
+}
