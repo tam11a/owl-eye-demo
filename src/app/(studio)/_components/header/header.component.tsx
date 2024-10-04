@@ -13,7 +13,9 @@ export default function HeaderComponent() {
 			<Header>
 				<section className="flex flex-row justify-between items-center">
 					<div className="text-white">
-						<h1>Owl Eye Studio</h1>
+						<h1 className="text-xs uppercase tracking-widest">
+							Studio App | Owl Eye 360
+						</h1>
 					</div>
 
 					<div>

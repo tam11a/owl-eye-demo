@@ -37,7 +37,9 @@ export default function ProfileDropdown() {
 			label: "Signout",
 			danger: true,
 			icon: <LogOutIcon size={16} />,
-			onClick: async () => {
+			onClick: async (info) => {
+				info.domEvent.preventDefault();
+
 				// Log the user out
 				const supabase = createClient();
 				await supabase.auth.signOut();

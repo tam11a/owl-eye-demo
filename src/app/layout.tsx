@@ -14,6 +14,7 @@ const fontSans = Outfit({
 export const metadata: Metadata = {
 	title: "Studio | Owl Eye",
 	description: "360 Tour Editing Software",
+	icons: ["favicon.svg"],
 };
 
 export default function RootLayout({

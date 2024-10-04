@@ -16,7 +16,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { login } from "./login.action";
 
 export function LoginForm() {
-	const { handleSubmit, control } = useForm<FormValues>({
+	const {
+		handleSubmit,
+		control,
+		formState: { errors },
+	} = useForm<FormValues>({
 		resolver: zodResolver(schema),
 		defaultValues: {
 			email: "",
@@ -74,6 +78,7 @@ export function LoginForm() {
 							label="Password"
 							name="password"
 							tooltip="Password must be at least 6 characters."
+							// status={error ? "error" : ""}
 						>
 							<Password
 								placeholder="******"
@@ -83,13 +88,12 @@ export function LoginForm() {
 								value={value}
 								status={error ? "error" : ""}
 							/>
-							<ErrorList
-								className="text-red-500"
-								fieldId="password"
-								errors={[error?.message]}
-							/>
 						</Item>
 					)}
+				/>
+				<ErrorList
+					className="text-red-500"
+					errors={Object.values(errors).map((error) => error.message)}
 				/>
 				<Button
 					size="large"
