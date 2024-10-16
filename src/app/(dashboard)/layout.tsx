@@ -10,7 +10,7 @@ export default function StudioLayout({
 	return (
 		<>
 			<HeaderComponent />
-			<main className="p-5">{children}</main>
+			<main className="p-5 max-w-7xl mx-auto">{children}</main>
 		</>
 	);
 }
